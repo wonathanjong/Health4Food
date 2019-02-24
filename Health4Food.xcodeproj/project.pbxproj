@@ -7,21 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		185AAACC222335E800237A4B /* BareNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAACA222335E800237A4B /* BareNavController.swift */; };
+		185AAACD222335E800237A4B /* Window.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAACB222335E800237A4B /* Window.swift */; };
+		185AAAD3222335F400237A4B /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAACF222335F400237A4B /* Constants.swift */; };
+		185AAAD4222335F400237A4B /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAAD0222335F400237A4B /* Extensions.swift */; };
+		185AAAD5222335F400237A4B /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAAD1222335F400237A4B /* MockData.swift */; };
+		185AAAD6222335F400237A4B /* Public_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAAD2222335F400237A4B /* Public_Functions.swift */; };
+		185AAAD922233D9D00237A4B /* Yeet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185AAAD822233D9D00237A4B /* Yeet.storyboard */; };
 		185BB602221F336400BFC61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BB601221F336400BFC61B /* AppDelegate.swift */; };
 		185BB604221F336400BFC61B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BB603221F336400BFC61B /* ViewController.swift */; };
 		185BB607221F336400BFC61B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185BB605221F336400BFC61B /* Main.storyboard */; };
 		185BB609221F336700BFC61B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 185BB608221F336700BFC61B /* Assets.xcassets */; };
-		185BB60C221F336700BFC61B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185BB60A221F336700BFC61B /* LaunchScreen.storyboard */; };
+		58A1E3581937FB4D8309E3F9 /* Pods_Health4Food.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D992B2D0FBD49AFB9D7853F4 /* Pods_Health4Food.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		185AAACA222335E800237A4B /* BareNavController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BareNavController.swift; sourceTree = "<group>"; };
+		185AAACB222335E800237A4B /* Window.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Window.swift; sourceTree = "<group>"; };
+		185AAACF222335F400237A4B /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		185AAAD0222335F400237A4B /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		185AAAD1222335F400237A4B /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		185AAAD2222335F400237A4B /* Public_Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Public_Functions.swift; sourceTree = "<group>"; };
+		185AAAD822233D9D00237A4B /* Yeet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Yeet.storyboard; sourceTree = "<group>"; };
 		185BB5FE221F336400BFC61B /* Health4Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health4Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185BB601221F336400BFC61B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		185BB603221F336400BFC61B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		185BB606221F336400BFC61B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		185BB608221F336700BFC61B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		185BB60B221F336700BFC61B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		185BB60D221F336700BFC61B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C86CD3EF9F9EADC76863A5F0 /* Pods-Health4Food.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health4Food.release.xcconfig"; path = "Pods/Target Support Files/Pods-Health4Food/Pods-Health4Food.release.xcconfig"; sourceTree = "<group>"; };
+		D992B2D0FBD49AFB9D7853F4 /* Pods_Health4Food.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Health4Food.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBC7107A5C05AE4088F14ECA /* Pods-Health4Food.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Health4Food.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Health4Food/Pods-Health4Food.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,17 +45,58 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58A1E3581937FB4D8309E3F9 /* Pods_Health4Food.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1630979FC00410C941945B72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D992B2D0FBD49AFB9D7853F4 /* Pods_Health4Food.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		175A8D49B7FEF8DFA624C8B2 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				EBC7107A5C05AE4088F14ECA /* Pods-Health4Food.debug.xcconfig */,
+				C86CD3EF9F9EADC76863A5F0 /* Pods-Health4Food.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		185AAAC92223357100237A4B /* Generics */ = {
+			isa = PBXGroup;
+			children = (
+				185AAACA222335E800237A4B /* BareNavController.swift */,
+				185AAACB222335E800237A4B /* Window.swift */,
+			);
+			path = Generics;
+			sourceTree = "<group>";
+		};
+		185AAACE222335F400237A4B /* Extras */ = {
+			isa = PBXGroup;
+			children = (
+				185AAACF222335F400237A4B /* Constants.swift */,
+				185AAAD0222335F400237A4B /* Extensions.swift */,
+				185AAAD1222335F400237A4B /* MockData.swift */,
+				185AAAD2222335F400237A4B /* Public_Functions.swift */,
+			);
+			name = Extras;
+			path = Health4Food/Extras;
+			sourceTree = SOURCE_ROOT;
+		};
 		185BB5F5221F336400BFC61B = {
 			isa = PBXGroup;
 			children = (
 				185BB600221F336400BFC61B /* Health4Food */,
 				185BB5FF221F336400BFC61B /* Products */,
+				175A8D49B7FEF8DFA624C8B2 /* Pods */,
+				1630979FC00410C941945B72 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,11 +111,13 @@
 		185BB600221F336400BFC61B /* Health4Food */ = {
 			isa = PBXGroup;
 			children = (
+				185AAACE222335F400237A4B /* Extras */,
+				185AAAC92223357100237A4B /* Generics */,
 				185BB601221F336400BFC61B /* AppDelegate.swift */,
 				185BB603221F336400BFC61B /* ViewController.swift */,
 				185BB605221F336400BFC61B /* Main.storyboard */,
+				185AAAD822233D9D00237A4B /* Yeet.storyboard */,
 				185BB608221F336700BFC61B /* Assets.xcassets */,
-				185BB60A221F336700BFC61B /* LaunchScreen.storyboard */,
 				185BB60D221F336700BFC61B /* Info.plist */,
 			);
 			path = Health4Food;
@@ -71,9 +130,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 185BB610221F336700BFC61B /* Build configuration list for PBXNativeTarget "Health4Food" */;
 			buildPhases = (
+				99AE1343B5638A2BBDAA20B1 /* [CP] Check Pods Manifest.lock */,
 				185BB5FA221F336400BFC61B /* Sources */,
 				185BB5FB221F336400BFC61B /* Frameworks */,
 				185BB5FC221F336400BFC61B /* Resources */,
+				95681DCB7A3C66C807E87506 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -122,7 +183,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				185BB60C221F336700BFC61B /* LaunchScreen.storyboard in Resources */,
+				185AAAD922233D9D00237A4B /* Yeet.storyboard in Resources */,
 				185BB609221F336700BFC61B /* Assets.xcassets in Resources */,
 				185BB607221F336400BFC61B /* Main.storyboard in Resources */,
 			);
@@ -130,13 +191,78 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		95681DCB7A3C66C807E87506 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Health4Food/Pods-Health4Food-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework",
+				"${BUILT_PRODUCTS_DIR}/Cache/Cache.framework",
+				"${BUILT_PRODUCTS_DIR}/Fusuma/Fusuma.framework",
+				"${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework",
+				"${BUILT_PRODUCTS_DIR}/JSONHelper/JSONHelper.framework",
+				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
+				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
+				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BarcodeScanner.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Cache.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Fusuma.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IQKeyboardManagerSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Imaginary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONHelper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Health4Food/Pods-Health4Food-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		99AE1343B5638A2BBDAA20B1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Health4Food-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		185BB5FA221F336400BFC61B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				185AAAD6222335F400237A4B /* Public_Functions.swift in Sources */,
+				185AAAD3222335F400237A4B /* Constants.swift in Sources */,
+				185AAAD4222335F400237A4B /* Extensions.swift in Sources */,
 				185BB604221F336400BFC61B /* ViewController.swift in Sources */,
 				185BB602221F336400BFC61B /* AppDelegate.swift in Sources */,
+				185AAACC222335E800237A4B /* BareNavController.swift in Sources */,
+				185AAAD5222335F400237A4B /* MockData.swift in Sources */,
+				185AAACD222335E800237A4B /* Window.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,14 +275,6 @@
 				185BB606221F336400BFC61B /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		185BB60A221F336700BFC61B /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				185BB60B221F336700BFC61B /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -280,15 +398,13 @@
 		};
 		185BB611221F336700BFC61B /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EBC7107A5C05AE4088F14ECA /* Pods-Health4Food.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YNJPT7VH25;
 				INFOPLIST_FILE = Health4Food/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wonathanjong.Health4Food;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -298,15 +414,13 @@
 		};
 		185BB612221F336700BFC61B /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C86CD3EF9F9EADC76863A5F0 /* Pods-Health4Food.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YNJPT7VH25;
 				INFOPLIST_FILE = Health4Food/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.wonathanjong.Health4Food;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

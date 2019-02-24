@@ -1,0 +1,60 @@
+PODS:
+  - Alamofire (5.0.0-beta.2)
+  - BarcodeScanner (4.1.3)
+  - Cache (5.2.0)
+  - Fusuma (1.3.3)
+  - Imaginary (4.2.0):
+    - Cache (~> 5.0)
+  - IQKeyboardManagerSwift (6.2.0)
+  - JSONHelper (2.2.0)
+  - Lightbox (2.3.0):
+    - Imaginary (~> 4.0)
+  - PureLayout (3.1.4)
+  - SCLAlertView (0.8)
+  - SpeechKit (2.2.2)
+  - SwiftyJSON (4.2.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 5.0.0-beta.2)
+  - BarcodeScanner
+  - Fusuma
+  - IQKeyboardManagerSwift
+  - JSONHelper
+  - Lightbox
+  - PureLayout
+  - SCLAlertView
+  - SpeechKit
+  - SwiftyJSON
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - BarcodeScanner
+    - Cache
+    - Fusuma
+    - Imaginary
+    - IQKeyboardManagerSwift
+    - JSONHelper
+    - Lightbox
+    - PureLayout
+    - SCLAlertView
+    - SpeechKit
+    - SwiftyJSON
+
+SPEC CHECKSUMS:
+  Alamofire: d1e5493588babe3e7b56ae29e8032942f4de09fe
+  BarcodeScanner: fce1ad2b3f28286b1ab5091fe0979789618bee27
+  Cache: 807c5d86d01a177f06ede9865add3aea269bbfd4
+  Fusuma: 3bd08c8c5341ec60c0074fa28570fea8765966f0
+  Imaginary: dae33d06dbc2ada22f98afef5eb45cc061311a2c
+  IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
+  JSONHelper: 340bf5d996f51fb9a0a001fbce9e27a81216e1a7
+  Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
+  PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
+  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
+  SpeechKit: f9b9498a7e8696ec284c1fb2722750736bddbc14
+  SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
+
+PODFILE CHECKSUM: 170b17f7eaaeacb13e724591c0b76ab76dd4a56b
+
+COCOAPODS: 1.5.0
