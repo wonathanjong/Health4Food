@@ -88,7 +88,14 @@
 			<key>orderHint</key>
 			<integer>11</integer>
 		</dict>
-		<key>SCLAlertView.xcscheme</key>
+		<key>SwiftMessages-SwiftMessages.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+			<key>orderHint</key>
+			<integer>13</integer>
+		</dict>
+		<key>SwiftMessages.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -100,7 +107,7 @@
 			<key>isShown</key>
 			<false/>
 			<key>orderHint</key>
-			<integer>13</integer>
+			<integer>14</integer>
 		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>

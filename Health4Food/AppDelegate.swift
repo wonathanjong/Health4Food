@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import Foundation
+import IQKeyboardManagerSwift
+import PureLayout
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +19,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        
+        //Sets the window frame for the different iOS device
+        self.window = Window(frame: UIScreen.main.bounds)
+        
+        self.window!.rootViewController = createTabSet()
+        self.window?.makeKeyAndVisible()
+        
+        //Configure navigation bar appearance
+        let navigationBarAppearance = UINavigationBar.appearance()
+        navigationBarAppearance.tintColor = Constants.Colors.mainBlue
+        navigationBarAppearance.barTintColor = UIColor.white
+        navigationBarAppearance.titleTextAttributes = [kCTForegroundColorAttributeName: UIColor.white] as [NSAttributedString.Key : Any]
         return true
     }
 
@@ -40,7 +57,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
-
+    
+    func createTabSet() -> UITabBarController {
+        let tabVC = UITabBarController()
+        
+        let collectDataVC = CollectDataViewController()
+        let collectDataNC = BareNavController(rootViewController: collectDataVC)
+        let collectDataTBI = UITabBarItem(title: "Collect Data", image: UIImage(named: "barcode"), selectedImage: UIImage(named: "barcode"))
+        collectDataNC.tabBarItem = collectDataTBI
+        //schedule tab for sellers
+        let searchDataVC = SearchDataViewController()
+        let searchDataNC = BareNavController(rootViewController: searchDataVC)
+        let searchDataTBI = UITabBarItem(title: "Search", image: UIImage(named: "search"), selectedImage: UIImage(named: "search"))
+        searchDataNC.tabBarItem = searchDataTBI
+            
+        tabVC.viewControllers = [collectDataNC, searchDataNC]
+        tabVC.tabBar.tintColor = Constants.Colors.mainBlue
+        
+        return tabVC
+    }
+    func signIn() {
+        if let window = window as? Window {
+            let tabSet = createTabSet()
+            
+            UIView.transition(with: window, duration: window.screenIsReady ? 0.5 : 0.0, options: .transitionCrossDissolve, animations: { () -> Void in
+                window.rootViewController = tabSet
+            }, completion: { (finished) -> Void in
+                
+            })
+        }
+    }
+    
+    class func del() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
 
 }
 

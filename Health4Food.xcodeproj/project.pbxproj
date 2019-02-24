@@ -14,6 +14,8 @@
 		185AAAD5222335F400237A4B /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAAD1222335F400237A4B /* MockData.swift */; };
 		185AAAD6222335F400237A4B /* Public_Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAAD2222335F400237A4B /* Public_Functions.swift */; };
 		185AAAD922233D9D00237A4B /* Yeet.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185AAAD822233D9D00237A4B /* Yeet.storyboard */; };
+		185AAADB2223422000237A4B /* CollectDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAADA2223422000237A4B /* CollectDataViewController.swift */; };
+		185AAADD2223425F00237A4B /* SearchDataViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185AAADC2223425F00237A4B /* SearchDataViewController.swift */; };
 		185BB602221F336400BFC61B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BB601221F336400BFC61B /* AppDelegate.swift */; };
 		185BB604221F336400BFC61B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 185BB603221F336400BFC61B /* ViewController.swift */; };
 		185BB607221F336400BFC61B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 185BB605221F336400BFC61B /* Main.storyboard */; };
@@ -29,6 +31,8 @@
 		185AAAD1222335F400237A4B /* MockData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		185AAAD2222335F400237A4B /* Public_Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Public_Functions.swift; sourceTree = "<group>"; };
 		185AAAD822233D9D00237A4B /* Yeet.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Yeet.storyboard; sourceTree = "<group>"; };
+		185AAADA2223422000237A4B /* CollectDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectDataViewController.swift; sourceTree = "<group>"; };
+		185AAADC2223425F00237A4B /* SearchDataViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchDataViewController.swift; sourceTree = "<group>"; };
 		185BB5FE221F336400BFC61B /* Health4Food.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Health4Food.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		185BB601221F336400BFC61B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		185BB603221F336400BFC61B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 				185AAACE222335F400237A4B /* Extras */,
 				185AAAC92223357100237A4B /* Generics */,
 				185BB601221F336400BFC61B /* AppDelegate.swift */,
+				185AAADA2223422000237A4B /* CollectDataViewController.swift */,
+				185AAADC2223425F00237A4B /* SearchDataViewController.swift */,
 				185BB603221F336400BFC61B /* ViewController.swift */,
 				185BB605221F336400BFC61B /* Main.storyboard */,
 				185AAAD822233D9D00237A4B /* Yeet.storyboard */,
@@ -208,7 +214,7 @@
 				"${BUILT_PRODUCTS_DIR}/JSONHelper/JSONHelper.framework",
 				"${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework",
 				"${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework",
-				"${BUILT_PRODUCTS_DIR}/SCLAlertView/SCLAlertView.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -222,7 +228,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JSONHelper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Lightbox.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PureLayout.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SCLAlertView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftMessages.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -258,9 +264,11 @@
 				185AAAD6222335F400237A4B /* Public_Functions.swift in Sources */,
 				185AAAD3222335F400237A4B /* Constants.swift in Sources */,
 				185AAAD4222335F400237A4B /* Extensions.swift in Sources */,
+				185AAADD2223425F00237A4B /* SearchDataViewController.swift in Sources */,
 				185BB604221F336400BFC61B /* ViewController.swift in Sources */,
 				185BB602221F336400BFC61B /* AppDelegate.swift in Sources */,
 				185AAACC222335E800237A4B /* BareNavController.swift in Sources */,
+				185AAADB2223422000237A4B /* CollectDataViewController.swift in Sources */,
 				185AAAD5222335F400237A4B /* MockData.swift in Sources */,
 				185AAACD222335E800237A4B /* Window.swift in Sources */,
 			);
@@ -404,7 +412,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YNJPT7VH25;
 				INFOPLIST_FILE = Health4Food/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wonathanjong.Health4Food;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
@@ -420,7 +431,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YNJPT7VH25;
 				INFOPLIST_FILE = Health4Food/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.wonathanjong.Health4Food;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;

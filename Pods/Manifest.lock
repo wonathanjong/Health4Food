@@ -10,8 +10,10 @@ PODS:
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
   - PureLayout (3.1.4)
-  - SCLAlertView (0.8)
   - SpeechKit (2.2.2)
+  - SwiftMessages (6.0.2):
+    - SwiftMessages/App (= 6.0.2)
+  - SwiftMessages/App (6.0.2)
   - SwiftyJSON (4.2.0)
 
 DEPENDENCIES:
@@ -22,8 +24,8 @@ DEPENDENCIES:
   - JSONHelper
   - Lightbox
   - PureLayout
-  - SCLAlertView
   - SpeechKit
+  - SwiftMessages
   - SwiftyJSON
 
 SPEC REPOS:
@@ -37,8 +39,8 @@ SPEC REPOS:
     - JSONHelper
     - Lightbox
     - PureLayout
-    - SCLAlertView
     - SpeechKit
+    - SwiftMessages
     - SwiftyJSON
 
 SPEC CHECKSUMS:
@@ -51,10 +53,10 @@ SPEC CHECKSUMS:
   JSONHelper: 340bf5d996f51fb9a0a001fbce9e27a81216e1a7
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
-  SCLAlertView: 6a77bb2edfc65e04dbe57725546cb4107a506b85
   SpeechKit: f9b9498a7e8696ec284c1fb2722750736bddbc14
+  SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 170b17f7eaaeacb13e724591c0b76ab76dd4a56b
+PODFILE CHECKSUM: 13284bc2d9b2013b74def2ec0c3a3d41d4c42525
 
 COCOAPODS: 1.5.0
