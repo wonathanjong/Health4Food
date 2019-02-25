@@ -16,4 +16,5 @@ pod 'SwiftyJSON'
 pod 'Fusuma'
 pod 'Lightbox'
 pod 'JSONHelper'
+pod 'M13Checkbox'
 end

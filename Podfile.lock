@@ -9,6 +9,7 @@ PODS:
   - JSONHelper (2.2.0)
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
+  - M13Checkbox (3.3.2)
   - PureLayout (3.1.4)
   - SpeechKit (2.2.2)
   - SwiftMessages (6.0.2):
@@ -23,6 +24,7 @@ DEPENDENCIES:
   - IQKeyboardManagerSwift
   - JSONHelper
   - Lightbox
+  - M13Checkbox
   - PureLayout
   - SpeechKit
   - SwiftMessages
@@ -38,6 +40,7 @@ SPEC REPOS:
     - IQKeyboardManagerSwift
     - JSONHelper
     - Lightbox
+    - M13Checkbox
     - PureLayout
     - SpeechKit
     - SwiftMessages
@@ -52,11 +55,12 @@ SPEC CHECKSUMS:
   IQKeyboardManagerSwift: b07ccf9d8cafe993dcd6cb794eb4ba34611a0c4e
   JSONHelper: 340bf5d996f51fb9a0a001fbce9e27a81216e1a7
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
+  M13Checkbox: d75dca81d61c9903e7f091f32b35a3254bc97dce
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   SpeechKit: f9b9498a7e8696ec284c1fb2722750736bddbc14
   SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 13284bc2d9b2013b74def2ec0c3a3d41d4c42525
+PODFILE CHECKSUM: 12593c7be8732e2b8efb6634830c48812901486d
 
 COCOAPODS: 1.5.0
