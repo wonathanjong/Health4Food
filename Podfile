@@ -17,4 +17,5 @@ pod 'Fusuma'
 pod 'Lightbox'
 pod 'JSONHelper'
 pod 'M13Checkbox'
+pod 'Presentr'
 end

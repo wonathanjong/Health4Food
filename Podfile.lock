@@ -10,6 +10,7 @@ PODS:
   - Lightbox (2.3.0):
     - Imaginary (~> 4.0)
   - M13Checkbox (3.3.2)
+  - Presentr (1.9)
   - PureLayout (3.1.4)
   - SpeechKit (2.2.2)
   - SwiftMessages (6.0.2):
@@ -25,6 +26,7 @@ DEPENDENCIES:
   - JSONHelper
   - Lightbox
   - M13Checkbox
+  - Presentr
   - PureLayout
   - SpeechKit
   - SwiftMessages
@@ -41,6 +43,7 @@ SPEC REPOS:
     - JSONHelper
     - Lightbox
     - M13Checkbox
+    - Presentr
     - PureLayout
     - SpeechKit
     - SwiftMessages
@@ -56,11 +59,12 @@ SPEC CHECKSUMS:
   JSONHelper: 340bf5d996f51fb9a0a001fbce9e27a81216e1a7
   Lightbox: d317750e4132bfb871a5307cfe0a2c7d6a583c65
   M13Checkbox: d75dca81d61c9903e7f091f32b35a3254bc97dce
+  Presentr: 7078d7eb5d1661ebeaae60c9e42a1e534de1b993
   PureLayout: f08c01b8dec00bb14a1fefa3de4c7d9c265df85e
   SpeechKit: f9b9498a7e8696ec284c1fb2722750736bddbc14
   SwiftMessages: 8b3cc68dba2f1c91aac1a74c90b10287aac35371
   SwiftyJSON: c4bcba26dd9ec7a027fc8eade48e2c911f229e96
 
-PODFILE CHECKSUM: 12593c7be8732e2b8efb6634830c48812901486d
+PODFILE CHECKSUM: 6a44f10f9c6577604410e4125c59562af0c0b95e
 
 COCOAPODS: 1.5.0
