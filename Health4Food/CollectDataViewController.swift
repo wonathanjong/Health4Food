@@ -16,8 +16,7 @@ import SwiftyJSON
 
 class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, BarcodeScannerDismissalDelegate, BarcodeScannerErrorDelegate, UITextViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource{
     
-    var barcodeScanned = true
-    var foodJSON: JSON?
+    var foodJSON: [String: Any]?
     var upcCode: String?
     var notesEdited = false
     
@@ -409,7 +408,7 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
         submitDataBT.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
         submitDataBT.autoPinEdge(toSuperviewEdge: .right, withInset: 0)
         submitDataBT.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
-        submitDataBT.autoSetDimension(.height, toSize: 50)
+        
     }
     
     // MARK:Logic and Functions
@@ -471,11 +470,157 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
     @objc func dismissKeyboard() {
         view.endEditing(true)
     }
-    @objc func chooseTargetGroup(){
-        
-    }
     @objc func submitData(){
+        var mealTypes:[String] = []
         
+        let breakState = breakCB.checkState
+        switch breakState {
+        case .checked:
+            mealTypes.append("Breakfast")
+        case .unchecked:
+            break
+        case.mixed:
+            break
+        }
+        let lunchState = lunchCB.checkState
+        switch lunchState {
+        case .checked:
+            mealTypes.append("Lunch")
+        case .unchecked:
+            break
+        case.mixed:
+            break
+        }
+        let dinnState = dinCB.checkState
+        switch dinnState {
+        case .checked:
+            mealTypes.append("Dinner")
+        case .unchecked:
+            break
+        case.mixed:
+            break
+        }
+        let snackState = snackCB.checkState
+        switch snackState {
+        case .checked:
+            mealTypes.append("Snack")
+        case .unchecked:
+            break
+        case.mixed:
+            break
+        }
+        let alert = UIAlertController(title: "Error", message: "Fill out all required sections before submitting", preferredStyle: .alert)
+        let alerto = UIAlertController(title: "Success", message: "Product Submission Catalogued", preferredStyle: .alert)
+        let already = UIAlertController(title: "Error", message: "Product Has Been Catalogued Already", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                return
+                
+            case .cancel:
+                return
+                
+            case .destructive:
+                return
+            }}))
+        alerto.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                return
+                
+            case .cancel:
+                return
+                
+            case .destructive:
+                return
+            }}))
+        already.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+            switch action.style{
+            case .default:
+                return
+                
+            case .cancel:
+                return
+                
+            case .destructive:
+                return
+            }}))
+        print("mealTypes")
+        if(mealTypes.count == 0){
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        var note = ""
+        if let not = notesTF.text{
+            note = not
+        }
+        print("tg")
+        guard let targetGroup = targetGroupField.text else{
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        print("store")
+        guard let store = storeField.text else{
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        print("code")
+        guard let code = upcCode else{
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        print("jason")
+        guard let jason = foodJSON else{
+            self.present(alert, animated: true, completion: nil)
+            return
+        }
+        
+        print(jason["nf_ingredient_statement"])
+        
+        var params: Parameters = ["upcNum": code, "targetGroup": targetGroup, "store": store, "mealTypes": mealTypes, "note": note, "matched": "yes"]
+        print(params)
+        if let ingredients = jason["nf_ingredient_statement"] as? String{
+            print(ingredients)
+            params["ingredients"] = ingredients
+        }
+        if let name = jason["food_name"] as? String{
+            print(name)
+            params["name"] = name
+        }
+        if let brand = jason["brand_name"] as? String{
+            print(brand)
+            params["brand"] = brand
+        }
+        if let photoLink = jason["photo"] as? [String: Any]{
+            if let photoLin = photoLink["thumb"] as? String{
+                print(photoLin)
+                params["photoLink"] = photoLin
+            }
+        }
+            
+        print(params)
+        
+        let encodedURL = "https://ocrf6suq56.execute-api.us-east-1.amazonaws.com/dev/health/createUPCEntry"
+        
+        AF.request(encodedURL, method: .post, parameters: params, encoding: JSONEncoding.default, interceptor: nil).responseJSON { response in
+            print(response)
+            switch response.result {
+            case .success(let value):
+                let json = JSON(value)
+                print(json)
+                if json["error"]=="Item already catalogued"{
+                    self.present(already, animated: true, completion: nil)
+                }else{
+                    self.present(alerto, animated: true, completion: nil)
+                }
+                self.resetView()
+
+            case .failure(let error):
+                print(error)
+                
+            }
+        }
     }
     func getData(from url: URL, completion: @escaping (Data?, URLResponse?, Error?) -> ()) {
         URLSession.shared.dataTask(with: url, completionHandler: completion).resume()
@@ -492,10 +637,37 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
         }
     }
     
+    func resetView(){
+        self.foodJSON = nil
+        self.upcCode = nil
+        self.notesEdited = false
+        
+        targetGroupField.text = "Infants"
+        storeField.text = "Whole Foods"
+        
+        self.notesTF.text = "Write notes here!"
+        self.notesTF.textColor = Constants.Colors.lightGray
+        
+        breakCB.setCheckState(M13Checkbox.CheckState.unchecked, animated: true)
+        lunchCB.setCheckState(M13Checkbox.CheckState.unchecked, animated: true)
+        dinCB.setCheckState(M13Checkbox.CheckState.unchecked, animated: true)
+        snackCB.setCheckState(M13Checkbox.CheckState.unchecked, animated: true)
+        
+        self.imageView.image = UIImage(named: "noBarcode")
+        upcLabel.text = "UPC #: "
+        nameLabel.text = "Name: "
+        nutritionLabel.text = "Brand: "
+        ingredientsLabel.text = "Ingredients: "
+        
+    }
+    
     func setData(data: JSON, code: String){
-        print(data)
-        print(data["foods"][0]["nf_ingredient_statement"])
-        foodJSON = data
+        
+        if let dict = data["foods"][0].dictionaryObject{
+            foodJSON = dict
+        } else{
+            return
+        }
         
         upcLabel.attributedText = attributedText(withString: "UPC #: " + code, boldString: "UPC #: ", font: UIFont.systemFont(ofSize: 14))
 
@@ -549,11 +721,6 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
         viewController.cameraViewController.barCodeFocusViewType = .animated
         // Show camera position button
         viewController.cameraViewController.showsCameraButton = true
-        // Set settings button text
-        let title = NSAttributedString(
-            string: "Settings",
-            attributes: [.font: UIFont.boldSystemFont(ofSize: 17), .foregroundColor : UIColor.white]
-        )
         
         present(viewController, animated: true, completion: nil)
     }
@@ -563,7 +730,6 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
         if let cod = self.upcCode{
             if cod==code{
                 dismiss(animated: true, completion: nil)
-                self.setData(data: self.foodJSON!, code: code)
             }
         }
         //send it or whatever
