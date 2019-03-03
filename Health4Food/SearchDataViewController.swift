@@ -17,6 +17,7 @@ import JSONHelper
 class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegate, BarcodeScannerDismissalDelegate, BarcodeScannerErrorDelegate {
     var dataJSON: JSON?
     var upcCode: String?
+    var searched = false
     
     override func viewDidLoad() {
         navigationItem.title = "HEALTH4FOOD"
@@ -57,13 +58,18 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
     // MARK :- CELL
     //
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
         if let jsonDerulo = self.dataJSON{
             print("yo")
-            return jsonDerulo.count
-        } else{
-            print("oh")
-            return 0
+            if searched{
+                return 1
+            }else{
+                return jsonDerulo.count
+            }
         }
+        
+        print("oh")
+        return 0
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -74,11 +80,17 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CustomTableCell
+        
         if let jsonDerulo = self.dataJSON{
-            guard let array = jsonDerulo.array else{
-                return cell
+            var val:[String:JSON] = [:]
+            if searched{
+                val = jsonDerulo.dictionaryValue
+            } else{
+                guard let array = jsonDerulo.array else{
+                    return cell
+                }
+                val  = array[indexPath.row].dictionaryValue
             }
-            let val  = array[0].dictionaryValue
             
             guard let name = val["name"]?.string else{
                 return cell
@@ -88,29 +100,49 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
             guard let upc = val["upcNum"]?.string else{
                 return cell
             }
-            cell.upcLabel.text = upc
+            cell.upcLabel.text = "UPC #: " + upc
             print("upc")
             guard let brand = val["brand"]?.string else{
                 return cell
             }
-            cell.brandLabel.text = brand
+            cell.brandLabel.text = "Brand: " + brand
             print("brand")
             guard let targetGroup = val["targetGroup"]?.string else{
                 return cell
             }
-            cell.targetGroupLabel.text = targetGroup
+            cell.targetGroupLabel.text = "Target Group: " + targetGroup
             print("targetGroup")
             guard let photo = val["photoLink"]?.string else{
                 return cell
             }
-            if let rl = URL(string: photo){
-                downloadImage(from: rl, cell: cell)
+            if let url = URL(string: photo){
+                if let data = try? Data(contentsOf: url){
+                    cell.productImageView.image = UIImage(data: data)
+//                    self.tableView.reloadData()
+                }
             }
-            
-            
         }
         
         return cell
+    }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        if let jsonDerulo = self.dataJSON{
+            
+            if searched{
+                let val  = jsonDerulo.dictionaryValue
+                
+                self.present(ViewDataViewController(dataJSON: val), animated: true, completion: nil)
+            }else{
+                guard let array = jsonDerulo.array else{
+                    return
+                }
+                let val  = array[indexPath.row].dictionaryValue
+                
+                self.present(ViewDataViewController(dataJSON: val), animated: true, completion: nil)
+            }
+        }
     }
     
     func setupTableView() {
@@ -141,15 +173,36 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
     
     func searchBarcode(barcode: String){
         let encodedURL = "https://ocrf6suq56.execute-api.us-east-1.amazonaws.com/dev/health/" + "{" + barcode + "}"
+        guard let newURL = encodedURL.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)else {
+            return
+        }
         
-        AF.request(encodedURL, method: .get, interceptor: nil).responseJSON { response in
+        AF.request(newURL, method: .get, interceptor: nil).responseJSON { response in
             print(response)
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
                 print(json)
-                self.dataJSON = json
+                if let body = json["body"].string{
+                    self.searched = true
+                    self.dataJSON = JSON(parseJSON: body)
+                }else{
+                    let alert = UIAlertController(title: "Error", message: "Product Has Not Been Catalogued", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                        switch action.style{
+                        case .default:
+                            return
+                            
+                        case .cancel:
+                            return
+                            
+                        case .destructive:
+                            return
+                        }}))
+                    self.present(alert, animated: true, completion: nil)
+                }
                 self.tableView.reloadData()
+                self.searched = false
                 
             case .failure(let error):
                 print(error)
@@ -194,6 +247,10 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
         self.present(viewController, animated: true, completion: nil)
     }
     
+    override func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        view.endEditing(true)
+    }
+    
     func scanner(_ controller: BarcodeScannerViewController, didCaptureCode code: String, type: String) {
         print(code)
         if let cod = self.upcCode{
@@ -201,24 +258,8 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
                 dismiss(animated: true, completion: nil)
             }
         }
-        //send it or whatever
-        let headers: HTTPHeaders = ["x-app-key": "5220d22fce42b72eb94facf26358db37", "x-app-id": "7ab8d245"]
-        let encodedURL = "https://trackapi.nutritionix.com/v2/search/item"
-        let params: Parameters = ["upc": code]
-        AF.request(encodedURL, method: .get, parameters: params, encoding: URLEncoding.default, headers: headers, interceptor: nil).responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                if json["message"]=="resource not found"{
-                    controller.resetWithError(message: "Product not found")
-                }else{
-                    self.upcCode = code
-                }
-            case .failure(let error):
-                print(error)
-                
-            }
-        }
+        searchBarcode(barcode: code)
+        dismiss(animated: true, completion: nil)
     }
     
     func scannerDidDismiss(_ controller: BarcodeScannerViewController) {
@@ -343,7 +384,8 @@ class CustomTableCell: UITableViewCell {
         productImageView.autoPinEdge(toSuperviewEdge: .left, withInset: 5)
         productImageView.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
         productImageView.autoPinEdge(toSuperviewEdge: .bottom, withInset: 5)
-        productImageView.autoSetDimension(.width, toSize: productImageView.frame.size.height)
+        
+        productImageView.autoSetDimension(.width, toSize: (Constants.Screen.width/6)-10)
         
         nameLabel.autoPinEdge(.top, to: .top, of: productImageView, withOffset: 0)
         nameLabel.autoPinEdge(.left, to: .right, of: productImageView, withOffset: 5)
