@@ -13,13 +13,15 @@ import SwiftyJSON
 
 class ViewDataViewController: UIViewController {
     var dataJSON: [String: JSON] = [:]
+    let widthFactor = UIScreen.main.bounds.size.width/375
+    let heightFactor = UIScreen.main.bounds.size.height/667
     let closeBT: UIButton = {
        let bt = UIButton()
         bt.setTitle("Close", for: .normal)
         bt.titleLabel?.textColor = Constants.Colors.mainBlue
         bt.setTitleColor(Constants.Colors.mainBlue, for: .normal)
         bt.setTitleColor(Constants.Colors.lightGray, for: .highlighted)
-        bt.titleLabel?.font = UIFont.systemFont(ofSize: 15, weight: .bold)
+        bt.titleLabel?.font = UIFont.systemFont(ofSize: 16, weight: .bold)
         bt.addTarget(self, action: #selector(ViewDataViewController.close), for: .touchUpInside)
         return bt
     }()
@@ -127,7 +129,7 @@ class ViewDataViewController: UIViewController {
             var str = ""
             for (index, meal) in mealTypes.enumerated(){
                 if let me = meal.string{
-                    if (index != 0 && index != mealTypes.count-1){
+                    if (index != mealTypes.count-1){
                         str += me + ", "
                     } else{
                         str+=me
@@ -173,12 +175,12 @@ class ViewDataViewController: UIViewController {
             scrollView.addSubview(element)
         }
         
-        closeBT.autoPinEdge(toSuperviewEdge: .top, withInset: 10)
-        closeBT.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
+        closeBT.autoPinEdge(toSuperviewEdge: .top, withInset: 30)
+        closeBT.autoPinEdge(toSuperviewEdge: .left, withInset: 15)
         
         scrollView.autoPinEdge(.top, to: .bottom, of: closeBT, withOffset: 5)
         scrollView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(), excludingEdge: .top)
-        scrollView.contentSize = CGSize(width: Constants.Screen.width, height: Constants.Screen.height*1.5)
+        scrollView.contentSize = CGSize(width: Constants.Screen.width, height: Constants.Screen.height*1.1)
         
         imageView.autoPinEdge(toSuperviewEdge: .top, withInset: 5)
         imageView.autoAlignAxis(toSuperviewAxis: .vertical)

@@ -26,7 +26,8 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
         }
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        self.tableView.backgroundColor = .white
+        self.view.backgroundColor = .white
         setupTableView()
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +51,7 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         
         let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: headerId) as! CustomTableViewHeader
+        header.searchVC = self
         return header
     }
     
@@ -60,15 +62,13 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         if let jsonDerulo = self.dataJSON{
-            print("yo")
             if searched{
+                print("dis is working")
                 return 1
             }else{
                 return jsonDerulo.count
             }
         }
-        
-        print("oh")
         return 0
     }
     
@@ -85,6 +85,7 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
             var val:[String:JSON] = [:]
             if searched{
                 val = jsonDerulo.dictionaryValue
+                print(val)
             } else{
                 guard let array = jsonDerulo.array else{
                     return cell
@@ -96,22 +97,18 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
                 return cell
             }
             cell.nameLabel.text = name
-            print("name")
             guard let upc = val["upcNum"]?.string else{
                 return cell
             }
             cell.upcLabel.text = "UPC #: " + upc
-            print("upc")
             guard let brand = val["brand"]?.string else{
                 return cell
             }
             cell.brandLabel.text = "Brand: " + brand
-            print("brand")
             guard let targetGroup = val["targetGroup"]?.string else{
                 return cell
             }
             cell.targetGroupLabel.text = "Target Group: " + targetGroup
-            print("targetGroup")
             guard let photo = val["photoLink"]?.string else{
                 return cell
             }
@@ -132,8 +129,11 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
             
             if searched{
                 let val  = jsonDerulo.dictionaryValue
-                
-                self.present(ViewDataViewController(dataJSON: val), animated: true, completion: nil)
+                print(val)
+                self.present(ViewDataViewController(dataJSON: val), animated: true) {
+                    self.searched = false
+                    self.getData()
+                }
             }else{
                 guard let array = jsonDerulo.array else{
                     return
@@ -184,25 +184,28 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
                 let json = JSON(value)
                 print(json)
                 if let body = json["body"].string{
-                    self.searched = true
-                    self.dataJSON = JSON(parseJSON: body)
-                }else{
-                    let alert = UIAlertController(title: "Error", message: "Product Has Not Been Catalogued", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
-                        switch action.style{
-                        case .default:
-                            return
-                            
-                        case .cancel:
-                            return
-                            
-                        case .destructive:
-                            return
-                        }}))
-                    self.present(alert, animated: true, completion: nil)
+                     let mason = JSON(parseJSON: body)
+                    if mason["error"].string != nil{
+                        let alert = UIAlertController(title: "Error", message: "Product Has Not Been Catalogued", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { action in
+                            switch action.style{
+                            case .default:
+                                return
+                                
+                            case .cancel:
+                                return
+                                
+                            case .destructive:
+                                return
+                            }}))
+                        self.present(alert, animated: true, completion: nil)
+                    }else{
+                        self.searched = true
+                        self.dataJSON = mason
+                    }
+                    
                 }
                 self.tableView.reloadData()
-                self.searched = false
                 
             case .failure(let error):
                 print(error)
@@ -278,6 +281,7 @@ class SearchDataViewController: UITableViewController, BarcodeScannerCodeDelegat
 // MARK :- HEADER
 //
 class CustomTableViewHeader: UITableViewHeaderFooterView {
+    var searchVC: SearchDataViewController?
     let scanBarcodeBT: UIButton = {
         let buttonView = UIButton()
         buttonView.setTitle("SCAN BARCODE", for: .normal)
@@ -295,14 +299,26 @@ class CustomTableViewHeader: UITableViewHeaderFooterView {
         buttonView.imageEdgeInsets = UIEdgeInsets(top:0, left:-10, bottom:0, right:0)
         return buttonView
     }()
-    let searchTF: UITextField = {
-        let field = UITextField()
+    let searchTF: TextField = {
+        let field = TextField()
+        let image = UIImage(named:"search")
+        let imageView = UIImageView(image: image)
+        if let size = imageView.image?.size {
+            imageView.frame = CGRect(x: 0.0, y: 0.0, width: size.width + 15.0, height: size.height)
+        }
+        field.keyboardType = .asciiCapableNumberPad
+        imageView.contentMode = UIView.ContentMode.center
+        field.leftViewMode = UITextField.ViewMode.always
+        imageView.image = image
+        
+        field.leftView = imageView
         field.placeholder = "  Search for Product by UPC"
         field.textColor = Constants.Colors.darkGray
 //        field.layer.borderWidth = 1
         field.tintColor = Constants.Colors.darkGray
 //        field.layer.cornerRadius = 4
         field.font = UIFont.systemFont(ofSize: 15)
+        field.addTarget(self, action: #selector(CustomTableViewHeader.handleSearch), for: .editingChanged)
 //        field.layer.borderColor = Constants.Colors.lightGray.cgColor
         return field
     }()
@@ -340,6 +356,17 @@ class CustomTableViewHeader: UITableViewHeaderFooterView {
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    @objc func handleSearch(){
+        if let vcToDo = self.searchVC{
+        if let searchText = self.searchTF.text{
+            if searchText.count == 12{
+                vcToDo.searchBarcode(barcode: self.searchTF.text!)
+            }
+        }
+        
+        }
     }
 }
 

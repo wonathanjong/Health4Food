@@ -20,6 +20,9 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
     var upcCode: String?
     var notesEdited = false
     
+    let widthFactor = UIScreen.main.bounds.size.width/375
+    let heightFactor = UIScreen.main.bounds.size.height/667
+    
     //top view
     let topView: UIView = {
         let view = UIView()
@@ -310,75 +313,76 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
         for element in elements{
             view.addSubview(element)
         }
-        
+        print(Constants.Screen.height)
+        print(Constants.Screen.width)
         topView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 10, left: 15, bottom: 0, right: 15), excludingEdge: .bottom)
         targetGroupLabel.autoPinEdge(toSuperviewEdge: .top)
         targetGroupLabel.autoPinEdge(toSuperviewEdge: .left)
-        targetGroupField.autoPinEdge(.top, to: .bottom, of: targetGroupLabel, withOffset: 5)
+        targetGroupField.autoPinEdge(.top, to: .bottom, of: targetGroupLabel, withOffset: 5 * heightFactor)
         targetGroupField.autoPinEdge(.left, to: .left, of: targetGroupLabel, withOffset: 0)
-        targetGroupField.autoSetDimension(.height, toSize: 35)
-        targetGroupField.autoSetDimension(.width, toSize: (Constants.Screen.width-40)/2)
-        targetGroupField.autoPinEdge(.right, to: .left, of: storeField, withOffset: -10)
+        targetGroupField.autoSetDimension(.height, toSize: 35 * heightFactor)
+        targetGroupField.autoSetDimension(.width, toSize: (Constants.Screen.width-(40*widthFactor))/2)
+        targetGroupField.autoPinEdge(.right, to: .left, of: storeField, withOffset: -10*widthFactor)
         
         storeField.autoPinEdge(toSuperviewEdge: .bottom)
         storeField.autoPinEdge(toSuperviewEdge: .right)
-        storeLabel.autoPinEdge(.bottom, to: .top, of: storeField, withOffset: -5)
+        storeLabel.autoPinEdge(.bottom, to: .top, of: storeField, withOffset: -5 * heightFactor)
         storeLabel.autoPinEdge(.left, to: .left, of: storeField, withOffset: 0)
         storeLabel.autoAlignAxis(.horizontal, toSameAxisOf: targetGroupLabel)
-        storeField.autoSetDimension(.height, toSize: 35)
+        storeField.autoSetDimension(.height, toSize: 35 * heightFactor)
         
-        mealsIncludedLabel.autoPinEdge(.top, to: .bottom, of: topView, withOffset: 10)
+        mealsIncludedLabel.autoPinEdge(.top, to: .bottom, of: topView, withOffset: 10 * heightFactor)
         mealsIncludedLabel.autoPinEdge(.left, to: .left, of: topView, withOffset: 0)
         
-        secondView.autoPinEdge(.top, to: .bottom, of: mealsIncludedLabel, withOffset: 10)
+        secondView.autoPinEdge(.top, to: .bottom, of: mealsIncludedLabel, withOffset: 10 * heightFactor)
         secondView.autoAlignAxis(toSuperviewAxis: .vertical)
         
         breakCB.autoPinEdge(toSuperviewEdge: .top)
         breakCB.autoPinEdge(toSuperviewEdge: .left)
-        breakCB.autoSetDimensions(to: CGSize(width: 30, height: 30))
-        breakCB.autoPinEdge(.bottom, to: .top, of: dinCB, withOffset: -5)
+        breakCB.autoSetDimensions(to: CGSize(width: 30 * widthFactor, height: 30 * widthFactor))
+        breakCB.autoPinEdge(.bottom, to: .top, of: dinCB, withOffset: -5 * heightFactor)
         breakLabel.autoAlignAxis(.horizontal, toSameAxisOf: breakCB)
-        breakLabel.autoPinEdge(.left, to: .right, of: breakCB, withOffset: 5)
-        breakLabel.autoPinEdge(.right, to: .left, of: lunchCB, withOffset: -70)
+        breakLabel.autoPinEdge(.left, to: .right, of: breakCB, withOffset: 5 * widthFactor)
+        breakLabel.autoPinEdge(.right, to: .left, of: lunchCB, withOffset: -70 * widthFactor)
         
         dinCB.autoPinEdge(toSuperviewEdge: .bottom)
         dinCB.autoPinEdge(toSuperviewEdge: .left)
-        dinCB.autoSetDimensions(to: CGSize(width: 30, height: 30))
+        dinCB.autoSetDimensions(to: CGSize(width: 30 * widthFactor, height: 30 * widthFactor))
         dinLabel.autoAlignAxis(.horizontal, toSameAxisOf: dinCB)
-        dinLabel.autoPinEdge(.left, to: .right, of: dinCB, withOffset: 5)
-        dinLabel.autoPinEdge(.right, to: .left, of: snackCB, withOffset: -70)
+        dinLabel.autoPinEdge(.left, to: .right, of: dinCB, withOffset: 5 * widthFactor)
+        dinLabel.autoPinEdge(.right, to: .left, of: snackCB, withOffset: -70 * widthFactor)
         
         lunchLabel.autoPinEdge(toSuperviewEdge: .top)
         lunchLabel.autoPinEdge(toSuperviewEdge: .right)
         lunchLabel.autoAlignAxis(.horizontal, toSameAxisOf: breakLabel)
         lunchCB.autoAlignAxis(.horizontal, toSameAxisOf: lunchLabel)
-        lunchCB.autoSetDimensions(to: CGSize(width: 30, height: 30))
-        lunchCB.autoPinEdge(.right, to: .left, of: lunchLabel, withOffset: -5)
-        lunchCB.autoPinEdge(.bottom, to: .top, of: snackCB, withOffset: -5)
+        lunchCB.autoSetDimensions(to: CGSize(width: 30 * widthFactor, height: 30 * widthFactor))
+        lunchCB.autoPinEdge(.right, to: .left, of: lunchLabel, withOffset: -5 * widthFactor)
+        lunchCB.autoPinEdge(.bottom, to: .top, of: snackCB, withOffset: -5 * heightFactor)
         
         snackLabel.autoPinEdge(toSuperviewEdge: .bottom)
         snackLabel.autoPinEdge(toSuperviewEdge: .right)
         snackLabel.autoAlignAxis(.horizontal, toSameAxisOf: dinLabel)
         snackCB.autoAlignAxis(.horizontal, toSameAxisOf: dinLabel)
         snackCB.autoAlignAxis(.horizontal, toSameAxisOf: dinCB)
-        snackCB.autoSetDimensions(to: CGSize(width: 30, height: 30))
-        snackCB.autoPinEdge(.right, to: .left, of: snackLabel, withOffset: -5)
+        snackCB.autoSetDimensions(to: CGSize(width: 30 * widthFactor, height: 30 * widthFactor))
+        snackCB.autoPinEdge(.right, to: .left, of: snackLabel, withOffset: -5 * widthFactor)
         
-        notesLabel.autoPinEdge(.top, to: .bottom, of: secondView, withOffset: 10)
+        notesLabel.autoPinEdge(.top, to: .bottom, of: secondView, withOffset: 10 * heightFactor)
         notesLabel.autoPinEdge(.left, to: .left, of: mealsIncludedLabel, withOffset: 0)
         notesTF.delegate = self
-        notesTF.autoPinEdge(.top, to: .bottom, of: notesLabel, withOffset: 5)
+        notesTF.autoPinEdge(.top, to: .bottom, of: notesLabel, withOffset: 5 * heightFactor)
         notesTF.autoPinEdge(.left, to: .left, of: notesLabel, withOffset: 0)
-        notesTF.autoPinEdge(toSuperviewEdge: .right, withInset: 20)
-        notesTF.autoSetDimension(.height, toSize: 60)
+        notesTF.autoPinEdge(toSuperviewEdge: .right, withInset: 20 * widthFactor)
+        notesTF.autoSetDimension(.height, toSize: 60 * heightFactor)
         
-        thirdView.autoPinEdge(.top, to: .bottom, of: notesTF, withOffset: 20)
+        thirdView.autoPinEdge(.top, to: .bottom, of: notesTF, withOffset: 20 * heightFactor)
         thirdView.autoPinEdge(.left, to: .left, of: notesLabel, withOffset: 0)
         thirdView.autoPinEdge(.right, to: .right, of: notesTF, withOffset: 0)
         
         imageView.autoPinEdgesToSuperviewEdges(with: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0), excludingEdge: .right)
-        imageView.autoSetDimensions(to: CGSize(width: 100, height: 150))
-        scrolly.autoPinEdge(.left, to: .right, of: imageView, withOffset: 10)
+        imageView.autoSetDimensions(to: CGSize(width: 100 * widthFactor, height: 150 * heightFactor))
+        scrolly.autoPinEdge(.left, to: .right, of: imageView, withOffset: 10 * widthFactor)
         scrolly.autoPinEdge(.top, to: .top, of: imageView, withOffset: 0)
         scrolly.autoPinEdge(.right, to: .right, of: notesTF)
         scrolly.autoPinEdge(.bottom, to: .bottom, of: imageView)
@@ -387,23 +391,23 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
         upcLabel.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
         nameLabel.autoPinEdge(toSuperviewEdge: .left)
         
-        nameLabel.autoPinEdge(.top, to: .bottom, of: upcLabel, withOffset: 5)
+        nameLabel.autoPinEdge(.top, to: .bottom, of: upcLabel, withOffset: 5 * heightFactor)
         nutritionLabel.autoPinEdge(toSuperviewEdge: .left)
-        nutritionLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 5)
+        nutritionLabel.autoPinEdge(.top, to: .bottom, of: nameLabel, withOffset: 5 * heightFactor)
         ingredientsLabel.autoPinEdge(toSuperviewEdge: .left)
-        ingredientsLabel.autoPinEdge(.top, to: .bottom, of: nutritionLabel, withOffset: 5)
+        ingredientsLabel.autoPinEdge(.top, to: .bottom, of: nutritionLabel, withOffset: 5 * heightFactor)
         
         
-        lastView.autoPinEdge(.top, to: .bottom, of: thirdView, withOffset: 25)
-        lastView.autoPinEdge(toSuperviewEdge: .left, withInset: 10)
-        lastView.autoPinEdge(toSuperviewEdge: .right, withInset: 10)
+        lastView.autoPinEdge(.top, to: .bottom, of: thirdView, withOffset: 25 * heightFactor)
+        lastView.autoPinEdge(toSuperviewEdge: .left, withInset: 10 * widthFactor)
+        lastView.autoPinEdge(toSuperviewEdge: .right, withInset: 10 * widthFactor)
         
         scanBarcodeBT.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
         scanBarcodeBT.autoPinEdge(toSuperviewEdge: .left, withInset: 0)
         scanBarcodeBT.autoPinEdge(toSuperviewEdge: .bottom, withInset: 0)
-        scanBarcodeBT.autoSetDimension(.height, toSize: 50)
-        scanBarcodeBT.autoSetDimension(.width, toSize: (Constants.Screen.width-30)/2)
-        scanBarcodeBT.autoPinEdge(.right, to: .left, of: submitDataBT, withOffset: -10)
+        scanBarcodeBT.autoSetDimension(.height, toSize: 50 * heightFactor)
+        scanBarcodeBT.autoSetDimension(.width, toSize: (Constants.Screen.width-30) * widthFactor/2)
+        scanBarcodeBT.autoPinEdge(.right, to: .left, of: submitDataBT, withOffset: -10 * widthFactor)
         
         submitDataBT.autoPinEdge(toSuperviewEdge: .top, withInset: 0)
         submitDataBT.autoPinEdge(toSuperviewEdge: .right, withInset: 0)

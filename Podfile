@@ -7,15 +7,10 @@ target 'Health4Food' do
 
   # Pods for Health4Food
 pod 'PureLayout'
-pod 'SpeechKit'
 pod 'Alamofire', '~> 5.0.0-beta.2'
 pod 'BarcodeScanner'
-pod 'SwiftMessages'
 pod 'IQKeyboardManagerSwift'
 pod 'SwiftyJSON'
-pod 'Fusuma'
-pod 'Lightbox'
 pod 'JSONHelper'
 pod 'M13Checkbox'
-pod 'Presentr'
 end

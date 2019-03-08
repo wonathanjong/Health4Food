@@ -145,31 +145,19 @@ strip_invalid_archs() {
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Cache/Cache.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Fusuma/Fusuma.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JSONHelper/JSONHelper.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/BarcodeScanner/BarcodeScanner.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Cache/Cache.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Fusuma/Fusuma.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/IQKeyboardManagerSwift/IQKeyboardManagerSwift.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Imaginary/Imaginary.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/JSONHelper/JSONHelper.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Lightbox/Lightbox.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/M13Checkbox/M13Checkbox.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/PureLayout/PureLayout.framework"
-  install_framework "${BUILT_PRODUCTS_DIR}/SwiftMessages/SwiftMessages.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

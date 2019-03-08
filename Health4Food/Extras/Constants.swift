@@ -19,6 +19,8 @@ struct Constants {
         static let lightGray = UIColor(red: 155/255, green: 155/255, blue: 155/255, alpha: 1.0)
     }
     struct Screen{
+       static let widthFactor = UIScreen.main.bounds.size.width/375
+       static let heightFactor = UIScreen.main.bounds.size.height/667
        static let width = UIScreen.main.bounds.size.width
        static let height = UIScreen.main.bounds.size.height
     }
