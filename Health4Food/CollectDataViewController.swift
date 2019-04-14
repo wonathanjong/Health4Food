@@ -605,7 +605,7 @@ class CollectDataViewController: UIViewController, BarcodeScannerCodeDelegate, B
             
         print(params)
         
-        let encodedURL = "https://ocrf6suq56.execute-api.us-east-1.amazonaws.com/dev/health/createUPCEntry"
+        let encodedURL = "https://vur6b3sxj3.execute-api.us-east-1.amazonaws.com/dev/health/createUPCEntry"
         
         AF.request(encodedURL, method: .post, parameters: params, encoding: JSONEncoding.default, interceptor: nil).responseJSON { response in
             print(response)
